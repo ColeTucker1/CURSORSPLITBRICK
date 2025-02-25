@@ -1,0 +1,2265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-blue: #2196f3;
+    --dark-bg: #000000;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --hover-bg: rgba(255, 255, 255, 0.04);
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --glow-color: rgba(33, 150, 243, 0.15);
+    --glow-strong: rgba(33, 150, 243, 0.3);
+    
+    /* Add consistent spacing units */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* Add consistent border radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    
+    /* Add consistent transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.4s ease;
+    
+    /* Add responsive breakpoints */
+    --mobile: 480px;
+    --tablet: 768px;
+    --laptop: 1024px;
+    --desktop: 1200px;
+
+    /* Add modern font */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Font sizes */
+    --font-xl: 2.5rem;    /* Large headers (h1) */
+    --font-lg: 1.4rem;    /* Sub headers (h2) */
+    --font-md: 1.1rem;    /* Regular text */
+    --font-sm: 0.9rem;    /* Secondary text */
+    --font-xs: 0.8rem;    /* Footer text */
+
+    /* Font weights */
+    --weight-bold: 700;
+    --weight-semibold: 600;
+    --weight-medium: 500;
+    --weight-regular: 400;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    background-image: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+}
+
+nav {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.nav-links a {
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: white;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-blue);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Reset section styles */
+section {
+    position: relative;
+    width: 100%;
+    padding: 3rem 5%;
+}
+
+/* Adjust hero section spacing */
+.hero-section {
+    min-height: auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8rem !important;
+    padding-bottom: 0;
+    position: relative;
+    overflow: visible !important;
+    margin-top: 0;
+    transform: translateZ(0);
+    z-index: 1;
+    background: transparent;
+    margin-bottom: 0;
+    height: auto;
+}
+
+/* Remove previous star styles */
+.hero-section .stars {
+    display: none;
+}
+
+/* Add new floating stars */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: rgba(33, 150, 243, 0.7);
+    border-radius: 50%;
+    animation: floatStar 50s linear infinite;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Create 20 unique stars with better staggered positions and timings */
+.star:nth-child(1) { left: 10%; animation-delay: -45s; }
+.star:nth-child(2) { left: 20%; animation-delay: -15s; background: rgba(124, 77, 255, 0.6); }
+.star:nth-child(3) { left: 30%; animation-delay: -30s; }
+.star:nth-child(4) { left: 40%; animation-delay: -5s; background: rgba(255, 236, 179, 0.5); }
+.star:nth-child(5) { left: 50%; animation-delay: -25s; }
+.star:nth-child(6) { left: 60%; animation-delay: -35s; background: rgba(124, 77, 255, 0.6); }
+.star:nth-child(7) { left: 70%; animation-delay: -10s; }
+.star:nth-child(8) { left: 80%; animation-delay: -40s; background: rgba(255, 236, 179, 0.5); }
+.star:nth-child(9) { left: 90%; animation-delay: -20s; }
+.star:nth-child(10) { left: 15%; animation-delay: -42s; background: rgba(124, 77, 255, 0.6); }
+.star:nth-child(11) { left: 25%; animation-delay: -12s; }
+.star:nth-child(12) { left: 35%; animation-delay: -32s; background: rgba(255, 236, 179, 0.5); }
+.star:nth-child(13) { left: 45%; animation-delay: -22s; }
+.star:nth-child(14) { left: 55%; animation-delay: -7s; background: rgba(124, 77, 255, 0.6); }
+.star:nth-child(15) { left: 65%; animation-delay: -27s; }
+.star:nth-child(16) { left: 75%; animation-delay: -37s; background: rgba(255, 236, 179, 0.5); }
+.star:nth-child(17) { left: 85%; animation-delay: -17s; }
+.star:nth-child(18) { left: 95%; animation-delay: -47s; background: rgba(124, 77, 255, 0.6); }
+.star:nth-child(19) { left: 5%; animation-delay: -2s; }
+.star:nth-child(20) { left: 15%; animation-delay: -33s; background: rgba(255, 236, 179, 0.5); }
+
+@keyframes floatStar {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(-50vh);
+    }
+}
+
+/* Hero logo container */
+.hero-logo {
+    margin: 0 !important;
+    padding: 0 6rem !important; /* Remove vertical padding completely */
+    margin-top: -10px !important; /* Add negative margin to move logo up */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    overflow: visible !important;
+    z-index: 1000;
+}
+
+/* Logo image with enhanced glow */
+.hero-logo img {
+    width: 180px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    filter: 
+        drop-shadow(0 0 20px rgba(33, 150, 243, 0.5))
+        drop-shadow(0 0 40px rgba(33, 150, 243, 0.3))
+        drop-shadow(0 0 60px rgba(33, 150, 243, 0.2));
+    animation: floatLogo 6s ease-in-out infinite;
+}
+
+/* Natural glow effect behind logo */
+.hero-logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3000px !important; /* Much larger glow area */
+    height: 3000px !important;
+    background: radial-gradient(
+        circle at center,
+        rgba(33, 150, 243, 0.15) 0%,
+        rgba(33, 150, 243, 0.1) 30%,
+        rgba(33, 150, 243, 0.05) 50%,
+        transparent 70%
+    );
+    opacity: 0.8;
+    z-index: -1 !important;
+    filter: blur(50px);
+    pointer-events: none;
+}
+
+/* Company name styling */
+.hero-logo h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    text-shadow: 
+        0 0 40px rgba(33, 150, 243, 0.2),
+        0 0 80px rgba(33, 150, 243, 0.1);
+}
+
+/* Remove the gradient background */
+.hero-logo::before {
+    display: none;
+}
+
+/* Floating animation */
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Hero text container */
+.hero-text {
+    margin-top: -1rem;
+    padding: 0 8rem; /* Increased padding to match width of company name */
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .hero-text {
+        padding: 0 2rem; /* Reduced padding for mobile */
+    }
+}
+
+/* Enhanced buttons */
+.btn-primary {
+    background: linear-gradient(45deg, #7c4dff, #2196f3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 4px 15px rgba(124, 77, 255, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #8c5fff, #3aa7ff);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 25px rgba(124, 77, 255, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Games section */
+#games {
+    position: relative;
+    z-index: 5;
+    padding-top: 0;
+    background: transparent;
+}
+
+/* About section */
+#about-us,
+#about-us .section-header,
+#about-us .section-header::before,
+#about-us h2,
+.about-content {
+    display: none;
+}
+
+/* Section content */
+.section-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Section headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Adjust spacing between sections */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Reduced from 1rem */
+}
+
+.hero-content.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.games-grid {
+    margin: 1rem auto;
+    gap: 1.5rem;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    section {
+        padding: 3rem 1rem;
+    }
+
+    .hero-section {
+        padding-top: 3.5rem;
+        padding-bottom: 0;
+    }
+
+    #games {
+        margin-top: -1rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .hero-logo img {
+        width: 140px;
+    }
+    
+    .hero-logo::before {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Modern form styling */
+.contact-form-container {
+    max-width: 500px;
+    margin: 4rem auto 6rem;
+    padding: 2.5rem;
+    background: rgba(13, 17, 23, 0.3);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 40px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    scroll-margin-top: 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-form-container h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Form field styles */
+.form-field {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-field label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hide label when input has content */
+.form-field input:not(:placeholder-shown) ~ label,
+.form-field textarea:not(:placeholder-shown) ~ label {
+    opacity: 0;
+}
+
+/* Focus states */
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: var(--primary-blue);
+    background: rgba(255, 255, 255, 0.07);
+    outline: none;
+}
+
+/* Verification box */
+.verification-box {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+/* Age verification */
+.age-verify {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.age-verify input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-blue);
+}
+
+.age-verify label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* CAPTCHA */
+.captcha {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
+
+.captcha label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.captcha-input {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.captcha-input input {
+    width: 60px;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+}
+
+/* Submit button */
+.contact-form .btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.9rem 2.5rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: var(--primary-blue);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.contact-form .btn:hover {
+    background: #1e88e5;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .contact-form-container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Footer spacing */
+footer {
+    margin-top: 6rem;
+    padding-top: 3rem;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,1));
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem; /* Added to maintain space before buttons */
+    margin-bottom: 2rem;
+}
+
+.btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #2196f3;
+    color: white;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.btn-primary:hover {
+    background: #1e88e5;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Stats container adjustments */
+.stats-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem auto 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Stat item sizing */
+.stat-item {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    min-width: 200px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.stat-item:hover {
+    background: linear-gradient(
+        125deg,
+        rgba(33, 150, 243, 0.1),
+        rgba(124, 77, 255, 0.1),
+        rgba(33, 150, 243, 0.05)
+    );
+    border-color: rgba(33, 150, 243, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(33, 150, 243, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Stat numbers styling */
+.stat-item h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: visible;
+    letter-spacing: -0.5px;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.95),
+        rgba(33, 150, 243, 0.8)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Active players highlight */
+.stat-item:first-child:hover h2 {
+    background: linear-gradient(
+        to right,
+        #3aa7ff,
+        #7c4dff
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Stat labels */
+.stat-item p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .stats-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stat-item {
+        padding: 1.5rem;
+    }
+
+    .stat-item h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+}
+
+.games-grid {
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    
+    /* Dynamic grid that adapts to screen size */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* Game card base styling */
+.game-card {
+    position: relative;
+    background: rgba(13, 17, 23, 0.3);
+    border-radius: 24px;
+    overflow: visible;
+    padding: 1.5rem;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    --start-hue: 0deg; /* Default value */
+}
+
+/* Default state - no glow or gradient */
+.game-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 24px;
+    background: transparent;
+    opacity: 0;
+}
+
+/* Enhanced holographic glow effect */
+.game-card::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: 
+        /* Inner glow */
+        radial-gradient(
+            circle at center,
+            rgba(33, 150, 243, 0.1), /* Reduced from 0.12 */
+            rgba(33, 150, 243, 0.06) 40%, /* Reduced from 0.08 */
+            transparent 70%
+        ),
+        /* Outer glow - larger and more subtle */
+        radial-gradient(
+            circle at center,
+            rgba(33, 150, 243, 0.06), /* Reduced from 0.08 */
+            rgba(124, 77, 255, 0.04) 60%, /* Reduced from 0.06 */
+            transparent 90%
+        ),
+        /* Holographic rainbow effect - toned down more */
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(255, 0, 0, 0.015) 10%, /* Reduced from 0.02 */
+            rgba(255, 165, 0, 0.015) 20%,
+            rgba(255, 255, 0, 0.015) 30%,
+            rgba(0, 255, 0, 0.015) 40%,
+            rgba(0, 255, 255, 0.015) 50%,
+            rgba(0, 0, 255, 0.015) 60%,
+            rgba(238, 130, 238, 0.015) 70%,
+            transparent 80%
+        );
+    opacity: 0;
+    z-index: -1;
+    filter: blur(20px);
+    transform: scale(0.95);
+    transition: all 0.4s ease;
+}
+
+/* Hover state - show holographic effects */
+.game-card:hover {
+    border-color: transparent;
+    transform: translateY(-8px);
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover::before {
+    opacity: 1;
+    background: linear-gradient(
+        125deg,
+        hsl(var(--start-hue), 70%, 55%, 0.3), /* Reduced from 0.35 */
+        hsl(calc(var(--start-hue) + 60deg), 70%, 55%, 0.3) 25%,
+        hsl(calc(var(--start-hue) + 120deg), 70%, 55%, 0.15) 50%, /* Reduced from 0.2 */
+        hsl(calc(var(--start-hue) + 180deg), 70%, 55%, 0.2) 75%, /* Reduced from 0.25 */
+        hsl(calc(var(--start-hue) + 240deg), 70%, 55%, 0.3)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: holographicShift 3s linear infinite;
+}
+
+.game-card:hover::after {
+    opacity: 1;
+    transform: scale(1.2);
+    animation: holographicGlow 3s linear infinite;
+}
+
+/* Slightly slower animations */
+@keyframes holographicShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes holographicGlow {
+    0% {
+        filter: blur(20px) hue-rotate(var(--start-hue));
+    }
+    50% {
+        filter: blur(20px) hue-rotate(calc(var(--start-hue) + 120deg));
+    }
+    100% {
+        filter: blur(20px) hue-rotate(calc(var(--start-hue) + 240deg));
+    }
+}
+
+/* Game thumbnail enhancement */
+.game-thumbnail {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.game-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Game info styling */
+.game-info {
+    position: relative;
+    z-index: 2;
+}
+
+.game-title {
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.game-stats {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Add subtle glow to active player count */
+.stat-row:first-child {
+    color: #2196f3;
+    text-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+}
+
+section h2 {
+    color: var(--primary-blue);
+    margin-bottom: 2rem;
+}
+
+#about {
+    background: var(--darker-bg);
+}
+
+/* Add these styles for the logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-img {
+    height: clamp(30px, 5vw, 40px);
+    width: auto;
+}
+
+.logo-text {
+    height: clamp(20px, 4vw, 30px);
+    width: auto;
+}
+
+#games h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.75)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+/* Add glow effect behind section titles */
+#games .section-header {
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 2rem;
+}
+
+/* Refine section header glow */
+#games .section-header::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(124, 77, 255, 0.15) 0%,
+        rgba(33, 150, 243, 0.1) 40%,
+        transparent 80%
+    );
+    opacity: 0.8;
+    z-index: -1;
+    filter: blur(40px);
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.game-thumbnail img {
+    margin-bottom: 0;
+}
+
+.view-all {
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.view-all .btn {
+    min-width: 200px;
+}
+
+/* Smooth scrolling for whole page */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Enhanced nav animations */
+.nav-links a {
+    position: relative;
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Loading animations */
+.game-card {
+    animation: fadeIn 0.5s ease backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger game card animations - update to handle more cards */
+.game-card:nth-child(1) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.1s; --start-hue: 0deg; }
+.game-card:nth-child(2) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.2s; --start-hue: 60deg; }
+.game-card:nth-child(3) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.3s; --start-hue: 120deg; }
+.game-card:nth-child(4) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.4s; --start-hue: 180deg; }
+.game-card:nth-child(5) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.5s; --start-hue: 240deg; }
+.game-card:nth-child(6) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.6s; --start-hue: 300deg; }
+.game-card:nth-child(7) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.7s; --start-hue: 0deg; }
+.game-card:nth-child(8) { animation: fadeIn 0.5s ease backwards; animation-delay: 0.8s; --start-hue: 60deg; }
+/* Add more if needed */
+
+/* Smooth section transitions */
+.hero-section, #games {
+    transition: opacity 0.5s ease;
+}
+
+/* Enhanced glow effects */
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+}
+
+/* Make the games section title more compact */
+#games h2 {
+    margin-bottom: 1rem;
+}
+
+/* Carousel styles */
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.carousel {
+    display: flex;
+    gap: 2rem;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.carousel-btn.prev {
+    left: 0;
+}
+
+.carousel-btn.next {
+    right: 0;
+}
+
+/* Update game card styles for carousel */
+.game-card {
+    min-width: 300px; /* Fixed width for carousel items */
+    flex-shrink: 0;
+}
+
+/* Make it responsive */
+@media (max-width: 1400px) {
+    .games-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Keep the games page grid flexible */
+.games-page .games-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Games page header styling */
+.games-page-header {
+    padding-top: 120px;
+    padding-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.9) 80%,
+        rgba(0, 0, 0, 1)
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+/* Update games page header glow */
+.games-page-header::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px; /* Made wider for better blend */
+    height: 160px; /* Made taller for better blend */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(33, 150, 243, 0.12) 0%,
+        rgba(33, 150, 243, 0.05) 30%,
+        rgba(33, 150, 243, 0.02) 60%,
+        transparent 80%
+    );
+    opacity: 0.7;
+    z-index: 0;
+    filter: blur(35px);
+}
+
+.games-page-header h1 {
+    position: relative;
+    z-index: 1;
+    font-size: var(--font-xl);
+    font-weight: var(--weight-semibold);
+    color: white;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(33, 150, 243, 0.4);
+}
+
+/* Update games page section */
+.games-page {
+    padding: 2rem 5%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+}
+
+/* Update logo styles */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+}
+
+/* Update stat value styles for games page */
+.games-page .stat-value {
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+}
+
+.games-page .stat-row:first-child .stat-value {
+    font-weight: var(--weight-bold);
+    color: var(--primary-blue);
+}
+
+/* Add glow to logo */
+.logo img {
+    filter: drop-shadow(0 0 15px var(--glow-color));
+    transition: filter 0.3s ease;
+}
+
+.logo:hover img {
+    filter: drop-shadow(0 0 25px var(--glow-strong));
+}
+
+/* Adjust games grid margin */
+.games-grid {
+    margin-top: 2rem;
+}
+
+/* Common styles for active players count */
+.stat-value {
+    color: var(--text-primary);
+    font-size: var(--font-sm);
+}
+
+/* Style for active players count on both pages */
+.stat-row:first-child .stat-value,
+.games-page .stat-row:first-child .stat-value {
+    font-weight: var(--weight-bold);
+    color: var(--primary-blue);
+}
+
+/* Update game stats container */
+.game-stats {
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--font-sm);
+    color: var(--text-secondary);
+}
+
+/* Active players count styling */
+.stat-row:first-child {
+    color: var(--primary-blue);
+    font-weight: var(--weight-medium);
+}
+
+/* Total visits styling */
+.stat-row:last-child {
+    opacity: 0.8;
+}
+
+/* Consistent stats sizing across pages */
+.game-stats,
+.games-page .game-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: var(--font-sm);
+}
+
+/* Remove any page-specific overrides */
+.games-page .stat-value,
+.stat-value {
+    font-size: var(--font-sm);
+    line-height: 1.4;
+}
+
+/* Active players highlight */
+.stat-row:first-child .stat-value,
+.games-page .stat-row:first-child .stat-value {
+    font-weight: 700 !important;
+    color: var(--primary-blue);
+}
+
+/* Common header glow styles for both "Our Games" and "Our Top Hits" */
+.games-page-header::before,
+#games .section-header::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px; /* Made wider for better blend */
+    height: 160px; /* Made taller for better blend */
+    background: radial-gradient(
+        ellipse at center,
+        rgba(33, 150, 243, 0.12) 0%,
+        rgba(33, 150, 243, 0.05) 30%,
+        rgba(33, 150, 243, 0.02) 60%,
+        transparent 80%
+    );
+    opacity: 0.7;
+    z-index: -1;
+    filter: blur(35px);
+}
+
+/* Common text styles for both headers */
+.games-page-header h1,
+#games h2 {
+    position: relative;
+    z-index: 1;
+    font-size: var(--font-xl);
+    font-weight: var(--weight-semibold);
+    color: white;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(33, 150, 243, 0.4);
+}
+
+/* Mercury-style hover effect */
+.game-card:hover {
+    transform: none;
+    border: none;
+    background: transparent;
+}
+
+/* About Us section styling */
+#about-us .section-header {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+#about-us .section-header::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 160px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(33, 150, 243, 0.12) 0%,
+        rgba(33, 150, 243, 0.05) 30%,
+        rgba(33, 150, 243, 0.02) 60%,
+        transparent 80%
+    );
+    opacity: 0.7;
+    z-index: 0;
+    filter: blur(35px);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--font-lg);
+}
+
+#about-us h2 {
+    position: relative;
+    z-index: 1;
+    font-size: var(--font-xl);
+    font-weight: var(--weight-semibold);
+    color: white;
+    margin: 0;
+    text-shadow: 0 0 20px rgba(33, 150, 243, 0.4);
+}
+
+/* Footer styles */
+footer {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,1));
+    padding: 4rem 5% 2rem;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-logo {
+    width: 60px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px var(--glow-color));
+}
+
+.footer-section h3 {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-md);
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-section a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    padding: var(--spacing-xs) 0;
+}
+
+.footer-section a:hover {
+    color: var(--primary-blue);
+    text-shadow: 0 0 10px var(--glow-color);
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--font-xs);
+}
+
+/* Make footer responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        margin: 0 auto 1rem;
+    }
+}
+
+/* Add subtle animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content > * {
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Improved responsiveness */
+@media (max-width: 768px) {
+    :root {
+        /* Adjust spacing for mobile */
+        --spacing-xl: 3rem;
+        --spacing-lg: 2rem;
+        --spacing-md: 1.5rem;
+    }
+    
+    .hero-text {
+        font-size: var(--font-lg);
+    }
+    
+    .stat-item h2 {
+        font-size: 2.8rem;
+    }
+}
+
+/* Skeleton loading styles */
+.skeleton {
+    background: #1a1a1a;
+    border-radius: var(--border-radius-lg);
+}
+
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        #1a1a1a 0%,
+        #252525 50%,
+        #1a1a1a 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.title-skeleton {
+    height: 24px;
+    width: 80%;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.stats-skeleton {
+    height: 18px;
+    width: 60%;
+    border-radius: 4px;
+}
+
+.game-thumbnail.shimmer {
+    aspect-ratio: 1/1;
+    border-radius: var(--border-radius-lg);
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Responsive grid adjustments */
+.games-grid {
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    
+    /* Dynamic grid that adapts to screen size */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* Responsive hero section */
+.hero-section {
+    min-height: auto;
+    padding: 4rem 2rem 2rem;
+}
+
+.hero-logo img {
+    width: clamp(80px, 15vw, 120px);
+}
+
+.hero-text {
+    font-size: var(--font-lg);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 3rem;
+    font-weight: var(--weight-regular);
+    max-width: 800px;
+    padding: 0 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive buttons */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+.btn {
+    padding: clamp(0.5rem, 2vw, 0.875rem) clamp(1rem, 3vw, 2rem);
+    white-space: nowrap;
+}
+
+/* Responsive stats */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    margin: 0;
+}
+
+.stat-item h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+/* Responsive navigation */
+nav {
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+}
+
+.nav-links {
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.logo-img {
+    height: clamp(30px, 5vw, 40px);
+}
+
+.logo-text {
+    height: clamp(20px, 4vw, 30px);
+}
+
+/* Responsive game cards */
+.game-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.game-title {
+    font-size: var(--font-md);
+}
+
+/* Responsive footer */
+.footer-content {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+}
+
+/* Enhanced mobile navigation */
+@media (max-width: 768px) {
+    nav {
+        padding: 0.75rem 1rem;
+    }
+    
+    .nav-links a {
+        font-size: var(--font-sm);
+        padding: 0.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .stats-container {
+        padding: 0 1rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-section {
+        min-height: 80vh;
+    }
+}
+
+/* Small desktop adjustments */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .games-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Large desktop optimization */
+@media (min-width: 1201px) {
+    .games-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Handle ultra-wide screens */
+@media (min-width: 1600px) {
+    .games-grid {
+        max-width: 1600px;
+    }
+    
+    .hero-section {
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+}
+
+/* Handle landscape mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 120vh;
+    }
+    
+    .hero-content {
+        padding: 4rem 0;
+    }
+}
+
+/* Print styles */
+@media print {
+    .hero-section {
+        min-height: auto;
+        page-break-after: always;
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Updated Contact form styles */
+.contact-form-container {
+    max-width: 500px;
+    margin: 4rem auto 6rem;
+    padding: 2.5rem;
+    background: rgba(13, 17, 23, 0.3);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 40px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    scroll-margin-top: 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-form-container h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: white;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group:focus-within {
+    background: rgba(33, 150, 243, 0.05);
+    box-shadow: 
+        0 0 0 2px rgba(33, 150, 243, 0.2),
+        0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: none;
+    line-height: 1.6;
+}
+
+.form-group label {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.25rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ label,
+.form-group textarea:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group textarea:not(:placeholder-shown) ~ label {
+    transform: translateY(-3.5rem) scale(0.85);
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid rgba(33, 150, 243, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 1rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.contact-form .btn {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.9rem 2.5rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    background: var(--primary-blue);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.contact-form .btn:hover {
+    background: #1e88e5;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-form-container {
+        margin: 3rem 1rem;
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 1.25rem;
+    }
+    
+    .form-group label {
+        left: 1.25rem;
+    }
+}
+
+/* Remove all underlines */
+a, .game-title, .game-stats, .stat-row {
+    text-decoration: none !important;
+}
+
+/* Mercury-style buttons */
+.btn {
+    padding: 0.9rem 2rem;
+    font-size: var(--font-md);
+    font-weight: var(--weight-medium);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+/* Stats container Mercury-style */
+.stats-container {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem auto;
+}
+
+.stat-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+/* Creative cursor effect */
+.game-card {
+    position: relative;
+    border: none; /* Remove border */
+    transition: none; /* Remove transition */
+}
+
+.game-card:hover {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* Artistic text reveal on scroll */
+.section-header h2 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealText 0.8s ease forwards;
+}
+
+@keyframes revealText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Creative stat number counting animation */
+.stat-item h2 {
+    background: linear-gradient(45deg, #2196f3, #64b5f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+/* Artistic button hover effect */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Creative game card hover effect */
+.game-thumbnail {
+    position: relative;
+    overflow: hidden;
+}
+
+.game-thumbnail::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(33, 150, 243, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.game-card:hover .game-thumbnail::before {
+    transform: translateX(100%);
+}
+
+/* Main headers (Our Games, Splitbrick Studio) */
+h1, #games h2, .games-page-header h1 {
+    font-size: var(--font-xl);
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+/* Hero text and main content */
+.hero-text, .about-content p {
+    font-size: var(--font-lg);
+    font-weight: var(--weight-regular);
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+/* Game titles */
+.game-title {
+    font-size: var(--font-md);
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show max 2 lines */
+    -webkit-box-orient: vertical;
+    line-height: 1.3;
+    height: 2.6em; /* Ensure consistent height for 2 lines */
+}
+
+/* Stats and secondary text */
+.game-stats, .stat-item p {
+    font-size: var(--font-sm);
+    font-weight: var(--weight-regular);
+    color: var(--text-secondary);
+}
+
+/* Footer text */
+.footer-section p, 
+.footer-section a, 
+.footer-bottom {
+    font-size: var(--font-xs);
+    font-weight: var(--weight-regular);
+}
+
+/* Navigation */
+.nav-links a {
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+}
+
+/* Buttons */
+.btn {
+    font-size: var(--font-md);
+    font-weight: var(--weight-medium);
+}
+
+/* Common header glow effect for all section headers */
+.section-header, 
+.games-page-header,
+.hero-logo h1,
+.contact-form-container {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.section-header::before,
+.games-page-header::before,
+.hero-logo h1::before,
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 160px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(33, 150, 243, 0.12) 0%,
+        rgba(33, 150, 243, 0.05) 30%,
+        rgba(33, 150, 243, 0.02) 60%,
+        transparent 80%
+    );
+    opacity: 0.7;
+    z-index: -1;
+    filter: blur(35px);
+}
+
+/* Common text shadow for all headers */
+.section-header h2,
+.games-page-header h1,
+.hero-logo h1,
+.contact-form-container h3 {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 20px rgba(33, 150, 243, 0.4);
+}
+
+/* Page transition effects */
+.page-transition {
+    opacity: 0;
+    background: var(--dark-bg);
+}
+
+/* Bold active players text everywhere */
+.stat-item:first-child p,
+.stat-row:first-child,
+.games-page .stat-row:first-child,
+.stat-item:first-child h2 {
+    font-weight: 700 !important;
+    color: var(--primary-blue);
+}
+
+/* Style total play sessions */
+.stat-item:last-child p,
+.stat-row:last-child {
+    font-weight: var(--weight-regular);
+    color: var(--text-secondary);
+}
+
+/* Ensure consistent active players styling */
+.stat-row:first-child .stat-value,
+.games-page .stat-row:first-child .stat-value {
+    font-weight: 700 !important;
+    color: var(--primary-blue);
+}
+
+/* Initial state - hide content */
+.hero-content {
+    opacity: 0;
+}
+
+/* Add class for fade in */
+.hero-content.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Remove the individual fade animations since we'll fade in everything together */
+.hero-content > * {
+    animation: none;
+}
+
+/* Clean page transitions */
+body {
+    opacity: 1;
+    background: var(--dark-bg);
+    transition: opacity 0.3s ease;
+}
+
+/* Simpler fade transition */
+.page-transition {
+    opacity: 0;
+    background: var(--dark-bg);
+}
+
+/* Remove any background transitions */
+.hero-section,
+.games-page,
+#games {
+    background: var(--dark-bg);
+    transition: opacity 0.3s ease;
+}
+
+/* Remove any hover transitions */
+.game-card,
+.game-thumbnail,
+.game-thumbnail img {
+    transition: none;
+}
+
+/* Enhanced header styles across the site */
+.hero-logo h1,
+#games h2,
+.games-page-header h1,
+.contact-form-container h3,
+.section-header h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.75)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Enhanced glow effect for all headers */
+.hero-logo,
+.section-header,
+.games-page-header,
+.contact-form-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Common glow effect */
+.hero-logo::before,
+.section-header::before,
+.games-page-header::before,
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(124, 77, 255, 0.15) 0%,
+        rgba(33, 150, 243, 0.1) 40%,
+        transparent 80%
+    );
+    opacity: 0.8;
+    z-index: -1;
+    filter: blur(40px);
+}
+
+/* Adjust subtitle styles */
+.hero-text,
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .hero-logo h1,
+    #games h2,
+    .games-page-header h1,
+    .contact-form-container h3,
+    .section-header h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+}
+
+/* Add shooting star container */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ensure body and html don't clip */
+body, html {
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Update star positioning to work on all pages */
+.star {
+    position: fixed; /* This ensures stars stay visible across the whole page */
+    width: 2px;
+    height: 2px;
+    background: rgba(33, 150, 243, 0.7);
+    border-radius: 50%;
+    animation: floatStar 50s linear infinite;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Ensure games page doesn't hide stars */
+.games-page-header,
+.games-page {
+    position: relative;
+    z-index: 2;
+    background: transparent; /* Remove any background that might hide stars */
+}
+
+/* Keep the dark gradient overlay */
+.games-page {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.95));
+} 
